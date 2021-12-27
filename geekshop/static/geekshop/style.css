@@ -78,16 +78,17 @@ html, body {
 	background-image: url(img/search.png);
 	position: absolute;
 	top: 63px;
-	left: 1176px;
+	left: 1170px;
 }
 .basket {
 	display: block;
-	width: 23px;
+	width: 140px;
 	height: 23px;	
 	/*background-image: url(img/basket.png);*/
 	position: absolute;
 	top: 63px;
-	left: 1210px;
+	left: 1195px;
+
 }
 
 .clearfix:after {
