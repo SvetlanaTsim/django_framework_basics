@@ -23,12 +23,14 @@
                         </a>
                     </li>
 					{% for link in links_menu %}
-						<li>
-                            <a href="{% url 'products:category' link.pk %}"
-                               class="{%  if request.resolver_match.kwargs.pk|add:'0' == link.pk %} active {% endif %}">
-                                {{link.name}}
-                            </a>
-                        </li>
+                        {% if link.is_active == 1 %}
+                            <li>
+                                <a href="{% url 'products:category' link.pk %}"
+                                   class="{%  if request.resolver_match.kwargs.pk|add:'0' == link.pk %} active {% endif %}">
+                                    {{link.name}}
+                                </a>
+                            </li>
+                        {% endif %}
 					{% endfor %}
 				</ul>
 			</div>
@@ -79,6 +81,23 @@
                       {% endif %}
                   </div>
                   <div class="related-products clearfix">
+
+                      <div class="paginator">
+                          {% if products.has_previous %}
+                            <a href="{% url 'products:page' category.pk products.previous_page_number %}">
+                              <
+                            </a>
+                          {% endif %}
+                          <span class="current">
+                            страница {{ products.number }} из
+                            {{ products.paginator.num_pages }}
+                          </span>
+                          {% if products.has_next %}
+                            <a href="{% url 'products:page' category.pk products.next_page_number %}">
+                              >
+                            </a>
+                          {% endif %}
+                    </div>
 
                     {% for product in products %}
                       <div class="block">
