@@ -1,6 +1,7 @@
 {% extends 'geekshop/base.html' %}
 
 {% load static %}
+{% load my_tags %}
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static '/mainapp/style.css' %}">
@@ -23,12 +24,14 @@
                         </a>
                     </li>
 					{% for link in links_menu %}
-						<li>
-                            <a href="{% url 'products:category' link.pk %}"
-                               class="{%  if request.resolver_match.kwargs.pk|add:'0' == link.pk %} active {% endif %}">
-                                {{link.name}}
-                            </a>
-                        </li>
+                        {% if link.is_active == 1 %}
+                            <li>
+                                <a href="{% url 'products:category' link.pk %}"
+                                   class="{%  if request.resolver_match.kwargs.pk|add:'0' == link.pk %} active {% endif %}">
+                                    {{link.name}}
+                                </a>
+                            </li>
+                        {% endif %}
 					{% endfor %}
 				</ul>
 			</div>
@@ -80,10 +83,27 @@
                   </div>
                   <div class="related-products clearfix">
 
+                      <div class="paginator">
+                          {% if products.has_previous %}
+                            <a href="{% url 'products:page' category.pk products.previous_page_number %}">
+                              <
+                            </a>
+                          {% endif %}
+                          <span class="current">
+                            страница {{ products.number }} из
+                            {{ products.paginator.num_pages }}
+                          </span>
+                          {% if products.has_next %}
+                            <a href="{% url 'products:page' category.pk products.next_page_number %}">
+                              >
+                            </a>
+                          {% endif %}
+                    </div>
+
                     {% for product in products %}
                       <div class="block">
                         <a href="{% url 'mainapp:detail' pk=product.pk %}">
-                          <img src="/media/{{ product.image }}" alt="product">
+                          <img src="{{ product.image|media_folder_products }}" alt="product">
                           <div class="text">
                             <img src="{% static 'geekshop/img/icon-hover.png' %}" alt="hover">
                               <h4>{{ product.name }}</h4>
@@ -103,7 +123,7 @@
 				<div class="related-products clearfix">
                     {% for product in same_products %}
                         <div class="block">
-                                <a href="{% url 'mainapp:detail' pk=product.pk %}"><img src="/media/{{ product.image }}" alt="">
+                                <a href="{% url 'mainapp:detail' pk=product.pk %}"><img src="{{ product.image|media_folder_products }}" alt="">
                                     <div class="text">
                                         <img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img">
                                         <h4>{{ product.name }}</h4>

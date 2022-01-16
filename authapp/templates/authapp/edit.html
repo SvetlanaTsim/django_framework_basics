@@ -1,10 +1,12 @@
 {% extends 'authapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 
 {% block content %}
     <div class="user_avatar">
-        <img src="/media/{{ user.avatar|default:"avatar.png" }}" class="w-25">
+{#        шаблонный фильтр media_folder_users#}
+        <img src="{{ user.avatar|media_folder_users }}" class="w-25">
     </div>
     <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
