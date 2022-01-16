@@ -7,7 +7,7 @@ from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditF
 
 
 def login(request):
-    title = 'входа'
+    title = 'вход'
 
     login_form = ShopUserLoginForm(data=request.POST or None)
 
