@@ -14,7 +14,6 @@
 {% block content %}
     <div class="header clearfix">
         {% include 'geekshop/includes/main_menu.html' %}
-        <a href="#" class="basket"></a>
     </div>
     <main>
         <div class="container-fluid">
@@ -42,7 +41,7 @@
                                <thead>
                                <tr>
                                    {% for field in form.visible_fields %}
-                                       <th class="{% cycle 'td1' 'td2' 'td3' %} order formset_td">
+                                       <th class="{% cycle 'td1' 'td2' 'td3' 'td4'%} order formset_td">
                                            {{ field.label|capfirst }}
                                        </th>
                                    {% endfor %}
@@ -51,7 +50,7 @@
                            {% endif %}
                            <tr class="formset_row">
                                {% for field in form.visible_fields %}
-                                   <td class="{% cycle 'td1' 'td2' 'td3' %} order formset_td">
+                                   <td class="{% cycle 'td1' 'td2' 'td3' 'td4'%} order formset_td">
                                        {% if forloop.first %}
                                            {% for hidden in form.hidden_fields %}
                                                {{ hidden }}
