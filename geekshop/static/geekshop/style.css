@@ -16,7 +16,7 @@ html, body {
 	height: 384px;
 }
 
-.container {
+.main_container {
 	width: 1366px;
 	margin: 0 auto;
 	min-height: 100%;
@@ -82,16 +82,16 @@ html, body {
 }
 .basket {
 	display: block;
-	width: 140px;
-	height: 23px;	
+	width: 160px;
+	height: 42px;
 	/*background-image: url(img/basket.png);*/
 	position: absolute;
-	top: 63px;
+	top: 60px;
 	left: 1195px;
 
 }
 
-.clearfix:after {
+.main_clearfix:after {
 	content: "";
 	display: block;
 	clear: both;
@@ -542,19 +542,19 @@ html, body {
 	color: #6c6c6c;
 }
 
-.footer {
+.main_footer {
 	height: 384px;
-	width: 1169px;
+	width: 1366px;
 	background-color: #f7f7f7;
 	padding-left: 99px;
 	padding-right: 98px;
 	margin: -384px auto 0;
 	clear: both;
 }
-.footer form {
+.main_footer form {
 	position: relative;
 }
-.footer form a i {
+.main_footer form a i {
 	display: block;
 	width: 21px;
 	height: 21px;
