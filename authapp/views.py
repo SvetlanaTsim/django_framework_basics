@@ -68,7 +68,7 @@ def register(request):
     return render(request, 'authapp/register.html', context)
 
 @transaction.atomic
-def edit (request):
+def edit(request):
     title = 'редактирование'
 
     if request.method == 'POST':
